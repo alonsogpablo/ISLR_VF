@@ -12,12 +12,16 @@ Types of supervised learning
 
 Supervised Learning:
 
+    Classification:
 
-KNN
+            KNN
 
 
-LOGISTIC REGRESSION
-
+            LOGISTIC REGRESSION
+    
+    Regression:
+    
+            
 Unsupervised Learning:
 
 
