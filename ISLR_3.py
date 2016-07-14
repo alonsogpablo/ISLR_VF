@@ -7,28 +7,53 @@ import seaborn as sns
 
 from sklearn.preprocessing import scale
 import sklearn.linear_model as skl_lm
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn import metrics
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-pd.set_option('display.notebook_repr_html', False)
 
-plt.style.use('seaborn-white')
+# read CSV file directly from a URL and save the results
+data = pd.read_csv('/Users/Pablo/PycharmProjects/ISLR/Advertising.csv', index_col=0)
 
-advertising = pd.read_csv('/Users/Pablo/PycharmProjects/ISLR/Advertising.csv', usecols=[1,2,3,4])
-advertising.info()
+# display the first 5 rows
+print data.head()
 
-sns.regplot(advertising.TV, advertising.Sales, order=1, ci=None, scatter_kws={'color':'r'})
-plt.xlim(-10,310)
-plt.ylim(ymin=0);
+# visualize the relationship between the features and the response using scatterplots
+sns.pairplot(data, x_vars=['TV','Radio','Newspaper'], y_vars='Sales', size=7, aspect=0.7, kind='reg')
 plt.show()
 
-# Regression coefficients (Ordinary Least Squares)
-regr = skl_lm.LinearRegression()
+# create a Python list of feature names
+feature_cols = ['TV', 'Radio', 'Newspaper']
 
-X = scale(advertising.TV, with_mean=True, with_std=False).reshape(-1,1)
-y = advertising.Sales
+# use the list to select a subset of the original DataFrame
+X = data[feature_cols]
 
-regr.fit(X,y)
-print(regr.intercept_)
-print(regr.coef_)
+# equivalent command to do this in one line
+X = data[['TV', 'Radio', 'Newspaper']]
+y=data['Sales']
+
+
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
+
+# import model
+from sklearn.linear_model import LinearRegression
+
+# instantiate
+linreg = LinearRegression()
+
+# fit the model to the training data (learn the coefficients)
+linreg.fit(X_train, y_train)
+
+# print the intercept and coefficients
+print linreg.intercept_
+print linreg.coef_
+
+# pair the feature names with the coefficients
+print zip(feature_cols, linreg.coef_)
+
+# make predictions on the testing set
+y_pred = linreg.predict(X_test)
+
+
+print np.sqrt(metrics.mean_squared_error(y_test, y_pred))
