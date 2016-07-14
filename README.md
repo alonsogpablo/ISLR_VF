@@ -1,11 +1,14 @@
 # ISLR_VF
 Disclaimer: Code obtained from DataSchool.io
 
+Types of supervised learning
 
-"## Types of supervised learning\n",
-      "\n",
-      "- **Classification:** Predict a categorical response\n",
-      "- **Regression:** Predict a continuous response"
+    Classification: Predict a categorical response
+    
+    
+    Regression: Predict a continuous response
+
+
 
 Supervised Learning:
 
