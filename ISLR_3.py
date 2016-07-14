@@ -22,3 +22,13 @@ sns.regplot(advertising.TV, advertising.Sales, order=1, ci=None, scatter_kws={'c
 plt.xlim(-10,310)
 plt.ylim(ymin=0);
 plt.show()
+
+# Regression coefficients (Ordinary Least Squares)
+regr = skl_lm.LinearRegression()
+
+X = scale(advertising.TV, with_mean=True, with_std=False).reshape(-1,1)
+y = advertising.Sales
+
+regr.fit(X,y)
+print(regr.intercept_)
+print(regr.coef_)
