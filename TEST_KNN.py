@@ -1,22 +1,26 @@
 import  pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-from sklearn import linear_model
+import pandas as pd
+training_data=pd.read_csv('/Users/Pablo/Desktop/TrainKNN.csv')
+test_data=pd.read_csv('/Users/Pablo/Desktop/TestKNN.csv')
 
-x_train=pd.Series([1],[2],[3]).reshape(1,-1)
-y_train=pd.Series([2],[4],[6]).reshape(1,-1)
+feature_cols=['DENSIDAD']
+response_col=['TIPO']
 
-# import model
-from sklearn.linear_model import LinearRegression
+X_train=training_data[feature_cols]
+y_train=training_data[response_col]
 
-# instantiate
-linreg = LinearRegression()
+X_test=test_data[feature_cols]
 
-linreg.fit(x_train,y_train)
+print X_train.shape
+print y_train.shape
+print X_test.shape
 
-x_test=pd.Series([4]).reshape(1,-1)
 
-y_test=linreg.predict(x_test)
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=5)  #ELEGIMOS K=5
+knn.fit(X_train, y_train)
+
+y_test=knn.predict(X_test)
 
 print y_test
