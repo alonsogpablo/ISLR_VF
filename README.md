@@ -3,26 +3,11 @@ Disclaimer: Code obtained from DataSchool.io
 
 Types of supervised learning
 
-    Classification: Predict a categorical response
+    Classification: Predict a categorical response (KNN, LOGREG)
     
     
-    Regression: Predict a continuous response
+    Regression: Predict a continuous response (LINREG)
 
-
-
-Supervised Learning:
-
-    Classification:
-
-            KNN
-
-
-            LOGISTIC REGRESSION
-    
-    Regression:
-    
-            
-Unsupervised Learning:
 
 
 
