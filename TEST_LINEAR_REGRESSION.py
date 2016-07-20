@@ -1,6 +1,6 @@
 import pandas as pd
-training_data=pd.read_csv('/Users/Pablo/Desktop/Training.csv')
-test_data=pd.read_csv('/Users/Pablo/Desktop/Test.csv')
+training_data=pd.read_csv('/Users/Pablo/Desktop/TrainLINREG.csv')
+test_data=pd.read_csv('/Users/Pablo/Desktop/TestLINREG.csv')
 
 feature_cols=['X']
 response_col=['Y']
